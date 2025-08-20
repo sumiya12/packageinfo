@@ -18,7 +18,7 @@ const { Title, Text } = Typography;
 
 const ImageSlider = ({
   images = [],
-  width = "100%",
+  width =300,
   height = 400,
 }) => {
   const many = images.length > 1;
@@ -39,7 +39,7 @@ const ImageSlider = ({
             key={`${src}-${i}`}
             style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
           >
-            <Image src={src} width={width} height={height} style={{ objectFit: "fit" }} />
+            <Image src={src} width={width} height={height} style={{ objectFit: "cover" }} />
           </div>
         ))}
       </Carousel>
@@ -155,7 +155,7 @@ const FAQSection = () => {
       </Row>
 
       {/* Warnings */}
-      <Row justify="center" gutter={[16, 24]} style={{ marginTop: 12 }}>
+      {/* <Row justify="center" gutter={[16, 24]} style={{ marginTop: 12 }}>
         <Col xs={24} sm={20} md={16} lg={12}>
           <Title level={3} style={{ textAlign: "center", marginBottom: 6 }}>
             <Text style={{ color: "black" }}>
@@ -191,7 +191,7 @@ const FAQSection = () => {
             </Button>
           </div>
         </Col>
-      </Row>
+      </Row> */}
     </div>
   );
 };
