@@ -1,0 +1,62 @@
+.App {
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  /* height: 130vh; */
+}
+.div {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+.Button {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+
+  color: black !important;
+  background-color: #f0f0f0 !important;
+  border: 1px solid #ccc !important;
+  border-radius: 5px !important;
+}
+.atag {
+  text-decoration: none;
+}
+
+.ant-carousel .slick-slide {
+  display: flex !important;
+  justify-content: center;
+}
+.ant-carousel .slick-slide > div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* src/global.css (эсвэл App.css) */
+:root {
+  --font-sans: "Inter", "Noto Sans", system-ui, -apple-system, "Segoe UI",
+    Roboto, Arial, "Helvetica Neue", sans-serif;
+  --font-serif: "Source Serif 4", "Noto Serif", "PT Serif", serif; /* Хэрэв урт текстэд сериф хэрэгтэй бол */
+}
+
+html,
+body {
+  font-family: var(--font-sans);
+  font-size: 16px; /* 16–18px OK */
+  line-height: 1.6; /* уншихад амар */
+  letter-spacing: 0.01em; /* багахан зай тавина */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+} /* тайлан/тоо жигдлэхэд */
+:where(.css-dev-only-do-not-override-1cide00).ant-collapse
+  > .ant-collapse-item
+  > .ant-collapse-header {
+  color: white;
+}
