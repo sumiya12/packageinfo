@@ -1,4 +1,4 @@
-import { Collapse, Row, Col, Image, Button, Typography } from "antd";
+import { Collapse, Row, Col, Image, Button, Typography, Carousel } from "antd";
 import {
   FieldTimeOutlined,
   CaretRightOutlined,
@@ -6,45 +6,43 @@ import {
 } from "@ant-design/icons";
 import { useState } from "react";
 import Portrait from "./media/IMG_3609.jpeg";
-// import Portrait2 from "./media/portrait_2.jpeg";
-// import Portrait3 from "./media/portrait_3.jpeg";
-// import Portrait4 from "./media/portrait_4.jpeg";
+import Portrait1 from "./media/IMG_4452.jpeg";
+import Portrait2 from "./media/IMG_0648.jpeg";
 import Regular from "./media/IMG_9363.jpeg";
-// import Full2 from "./media/full_2.jpeg";
-// import Full3 from "./media/full_3.jpeg";
-// import Full4 from "./media/full_4.jpeg";
+import Regular1 from "./media/IMG_4242.jpeg";
+import Regular2 from "./media/IMG_7829.jpeg";
 import "./App.css";
 
 const { Panel } = Collapse;
 const { Title, Text } = Typography;
 
-/** 2x2 Grid gallery with its own PreviewGroup (isolated) */
-const OneThumbPreview = ({ images = [], thumbHeight }) => {
-  const [visible, setVisible] = useState(false);
-  const cover = images?.[0];
-
-  if (!cover) return null;
+const ImageSlider = ({
+  images = [],
+  width = "100%",
+  height = 400,
+}) => {
+  const many = images.length > 1;
 
   return (
-    <Image.PreviewGroup
-      preview={{
-        visible,
-        onVisibleChange: (v) => setVisible(v),
-      }}
-    >
-      {/* Зөвхөн НЭГ зураг харагдана, дээр нь дарахад preview нээгдэнэ */}
-      <Image
-        src={cover}
-        style={{ objectFit: "fill", borderRadius: 8 }}
-        onClick={() => setVisible(true)}
-      />
-
-      {/* Preview-д бүртгүүлэх зорилгоор үлдсэн зургуудыг нууцалж оруулна */}
-      <div style={{ display: "none" }}>
-        {images.map((src, i) => (
-          <Image key={`${src}-${i}`} src={src} />
+    <Image.PreviewGroup>
+      <Carousel
+        dots={many}
+        arrows={many}
+        infinite={many}
+        swipe={many}
+        draggable={many}
+        adaptiveHeight
+        style={{ width: "100%" }}
+      >
+        {(images.length ? images : [Regular]).map((src, i) => (
+          <div
+            key={`${src}-${i}`}
+            style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+          >
+            <Image src={src} width={width} height={height} style={{ objectFit: "fit" }} />
+          </div>
         ))}
-      </div>
+      </Carousel>
     </Image.PreviewGroup>
   );
 };
@@ -54,14 +52,14 @@ const BOOKING_FAQ = [
     question: "Хөрөг зургийн төрлөөр (Биеийн дээд хэсгийн зураг авалттай)",
     answer:
       "Үүнд: <br/>- Төрсөн өдрийн багц (30/60мин) <br/>- Portrait багц (30/60мин) <br/>- Жирэмсний 60мин багц <br/>Та <a href='https://calendly.com/picshot23' target='_blank' rel='noreferrer'>энд дарж</a> цаг захиална уу.",
-    images: [Portrait, Regular, Portrait], // 4 ХӨРӨГ ЗУРАГ
+    images: [Portrait2,Portrait, Portrait1], // 4 ХӨРӨГ ЗУРАГ
   },
   {
     id: "fullbody",
     question: "Бүтэн бие орсон төрлөөр",
     answer:
-      "Үүнд: <br/>- Энгийн багц (30/60мин) <br/>- Хүүхдийн төрсөн өдөр (30/60мин) <br/>- Жирэмсний 60мин багц <br/>Та <a href='https://calendly.com/picshot' target='_blank' rel='noreferrer'>энд дарж</a> цаг захиална уу.",
-    images: [Regular], // 4 БҮТЭН БИЕ ЗУРАГ
+      "Үүнд: <br/>- Энгийн багц (30/60мин) <br/>- Хүүхдийн төрсөн өдөр (60мин) <br/>- Жирэмсний 60мин багц <br/>Та <a href='https://calendly.com/picshot' target='_blank' rel='noreferrer'>энд дарж</a> цаг захиална уу.",
+    images: [Regular, Regular1, Regular2], // 4 БҮТЭН БИЕ ЗУРАГ
   },
 ];
 
@@ -145,7 +143,7 @@ const FAQSection = () => {
             {BOOKING_FAQ.map((item) => (
               <Panel header={item.question} key={item.id}>
                 {/* ТУС БҮРДЭЭ PreviewGroup (холилдохгүй) */}
-                <OneThumbPreview images={item.images} />
+                <ImageSlider images={item.images} />
                 <div
                   style={{ lineHeight: 1.7, marginTop: 12 }}
                   dangerouslySetInnerHTML={{ __html: item.answer }}
